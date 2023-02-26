@@ -42,7 +42,7 @@ def get_user(user_id):
 def upload_user(first_name: str, last_name: str, age: int):
     obj = {"first_name": first_name, "last_name": last_name, "age": age}
     try:
-        conn = mysql.connector.connect(host=host_local,user='username',passwd=password)
+        conn = mysql.connector.connect(host=host_local,user=username,passwd=password)
         if conn.is_connected():
            sql_select_Query = "INSERT INTO sql12601077.person (first_name, last_name, age) VALUES (%s, %s, %s)"
            val = (first_name, last_name, age)
