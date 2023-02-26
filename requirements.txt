@@ -1,0 +1,5 @@
+fastapi
+mysql.connector
+json
+requests
+pydantic
