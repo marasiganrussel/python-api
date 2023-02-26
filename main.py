@@ -11,13 +11,17 @@ app = FastAPI()
 @app.get("/get-all", status_code=200)
 def get_all():
     try:
+        obj_final = []
         conn = mysql.connector.connect(host=host_local,user=username,passwd=password)
         if conn.is_connected():
            sql_select_Query = "select * from sql12601077.person"
            mycursor = conn.cursor()
            mycursor.execute(sql_select_Query)
            result = mycursor.fetchall()
-           return result
+           for row in result:
+                obj = {"id": row[0], "first_name": row[1],"last_name": row[2], "age": row[3]}
+                obj_final.append(obj)
+           return obj_final
            
     except:
         raise HTTPException(status_code=404, detail="Item not found")
@@ -25,14 +29,17 @@ def get_all():
 @app.get("/get/{user_id}", status_code=200)
 def get_user(user_id):
     try:
+        obj_final = []
         conn = mysql.connector.connect(host=host_local,user=username,passwd=password)
         if conn.is_connected():
            sql_select_Query = "select * from sql12601077.person where id="+user_id
            mycursor = conn.cursor()
            mycursor.execute(sql_select_Query)
            result = mycursor.fetchall()
-           conn.close()
-           return result
+           for row in result:
+                obj = {"id": row[0], "first_name": row[1],"last_name": row[2], "age": row[3]}
+                obj_final.append(obj)
+           return obj_final
            
     except:
         raise HTTPException(status_code=404, detail="Item not found")
