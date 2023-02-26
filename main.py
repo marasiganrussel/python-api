@@ -2,9 +2,9 @@ from fastapi import FastAPI, Request, Response, HTTPException
 import mysql.connector
 from pydantic import BaseModel
 
-host_local = 'localhost'
-username = 'root'
-password = ''
+host_local = 'sql12.freesqldatabase.com'
+username = 'sql12601077'
+password = 'Gk16DAWxii'
 
 app = FastAPI()
 
@@ -13,7 +13,7 @@ def get_all():
     try:
         conn = mysql.connector.connect(host=host_local,user=username,passwd=password)
         if conn.is_connected():
-           sql_select_Query = "select * from users.person"
+           sql_select_Query = "select * from sql12601077.person"
            mycursor = conn.cursor()
            mycursor.execute(sql_select_Query)
            result = mycursor.fetchall()
@@ -27,7 +27,7 @@ def get_user(user_id):
     try:
         conn = mysql.connector.connect(host=host_local,user=username,passwd=password)
         if conn.is_connected():
-           sql_select_Query = "select * from users.person where id="+user_id
+           sql_select_Query = "select * from sql12601077.person where id="+user_id
            mycursor = conn.cursor()
            mycursor.execute(sql_select_Query)
            result = mycursor.fetchall()
@@ -44,7 +44,7 @@ def upload_user(first_name: str, last_name: str, age: int):
     try:
         conn = mysql.connector.connect(host=host_local,user='username',passwd=password)
         if conn.is_connected():
-           sql_select_Query = "INSERT INTO users.person (first_name, last_name, age) VALUES (%s, %s, %s)"
+           sql_select_Query = "INSERT INTO sql12601077.person (first_name, last_name, age) VALUES (%s, %s, %s)"
            val = (first_name, last_name, age)
            mycursor = conn.cursor()
            mycursor.execute(sql_select_Query,val)
@@ -65,7 +65,7 @@ def upload_user_v2(user: addUser):
     try:
         conn = mysql.connector.connect(host=host_local,user=username,passwd=password)
         if conn.is_connected():
-           sql_select_Query = "INSERT INTO users.person (first_name, last_name, age) VALUES (%s, %s, %s)"
+           sql_select_Query = "INSERT INTO sql12601077.person (first_name, last_name, age) VALUES (%s, %s, %s)"
            val = (item_dict['first_name'], item_dict['last_name'], item_dict['age'])
            mycursor = conn.cursor()
            mycursor.execute(sql_select_Query,val)
